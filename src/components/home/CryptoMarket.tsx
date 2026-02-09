@@ -2,10 +2,10 @@ import Image from 'next/image';
 import { TrendingUp, TrendingDown } from 'lucide-react';
 
 const miniCards = [
-  { name: 'Bitcoin', symbol: 'BTC', price: '$52,291', change: '+0.25%', color: '#F7931A' },
-  { name: 'Ethereum', symbol: 'ETH', price: '$52,291', change: '+0.25%', color: '#627EEA' },
-  { name: 'Solana', symbol: 'SOL', price: '$52,291', change: '-0.25%', color: '#14F195' },
-  { name: 'Bitcoin', symbol: 'BTC', price: '$52,291', change: '+0.25%', color: '#F7931A' },
+  { name: 'Bitcoin', symbol: 'BTC', price: '$52,291', change: '+0.25%', image:'/icon/Vector 10.png' },
+  { name: 'Ethereum', symbol: 'ETH', price: '$52,291', change: '+0.25%', image:'/icon/Vector 10.png' },
+  { name: 'Solana', symbol: 'SOL', price: '$52,291', change: '-0.25%', image:'/icon/Vector 10 (1).png' },
+  { name: 'Bitcoin', symbol: 'BTC', price: '$52,291', change: '+0.25%', image:'/icon/Vector 10.png' },
 ];
 
 const cryptoList = [
@@ -37,13 +37,11 @@ export const CryptoMarket = () => {
                 </div>
               </div>
             </div>
-            <div className="w-14 h-8">
-               <svg viewBox="0 0 100 40" className="w-full h-full">
-                  <path d="M0 30 Q 25 10, 50 30 T 100 10" fill="none" stroke={item.change.startsWith('+') ? '#22c55e' : '#ef4444'} strokeWidth="3" strokeLinecap="round" />
-               </svg>
+            <div className="w-20 h-8">
+              <Image src={item.image} width={0} height={0} alt={item.name} className="w-full h-full "/>
             </div>
           </div>
-        ))}
+        ))} 
       </div>
 
       <div className="bg-[#0D0D0D] border border-white/[0.05] rounded-[32px] p-6 md:p-10 shadow-xl">
