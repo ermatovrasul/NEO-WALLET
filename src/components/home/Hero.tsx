@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export const Hero = () => {
   return (
@@ -77,7 +78,7 @@ export const Hero = () => {
               whileTap={{ scale: 0.95 }}
               className="group relative bg-[#E50914] text-white px-12 py-5 rounded-2xl text-lg font-bold transition-all shadow-lg shadow-red-900/20 overflow-hidden"
             >
-              <span className="relative z-10">Создать кошелек</span>
+              <Link href="/dashboard" className="relative z-10"><span className="relative z-10">Создать кошелек</span></Link>
               <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
             </motion.button>
           </div>

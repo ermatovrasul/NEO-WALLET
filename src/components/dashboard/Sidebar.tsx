@@ -1,10 +1,12 @@
 "use client";
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import { useState } from 'react';
 import { 
   LayoutGrid, PlusCircle, ArrowUpRight, CreditCard, 
   ArrowDownLeft, BarChart3, History, Wallet, Settings, LogOut, Bell
 } from 'lucide-react';
+import { LogoutModal } from '@/components/dashboard/deposit/modals/LogoutModal'; 
 
 const menu = [
   { group: 'Основное', items: [
@@ -24,6 +26,13 @@ const menu = [
 
 export const Sidebar = () => {
   const pathname = usePathname();
+  const router = useRouter();
+  
+  const [isLogoutOpen, setIsLogoutOpen] = useState(false);
+
+  const handleLogoutConfirm = () => {
+    router.push('/login');
+  };
 
   return (
     <div className="flex flex-col h-full p-6">
@@ -54,11 +63,18 @@ export const Sidebar = () => {
           </div>
         ))}
       </nav>
-
-      <button className="flex items-center gap-3 px-3 py-2.5 text-[#4C4C4C] hover:text-red-500 transition-colors mt-auto">
+      <button 
+        onClick={() => setIsLogoutOpen(true)}
+        className="flex items-center gap-3 px-3 py-2.5 text-[#4C4C4C] hover:text-red-500 transition-colors mt-auto"
+      >
         <LogOut size={18} />
         <span className="text-sm font-medium">Выйти</span>
       </button>
+      <LogoutModal 
+        isOpen={isLogoutOpen} 
+        onClose={() => setIsLogoutOpen(false)} 
+        onConfirm={handleLogoutConfirm} 
+      />
     </div>
   );
 };

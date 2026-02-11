@@ -21,7 +21,7 @@ export const Header = () => {
 
   return (
     <>
-      <header className="fixed top-6 w-full z-[100] px-4">
+      <header className=" top-6 w-full z-[100] px-4">
         <div className="max-w-7xl mx-auto h-[76px] bg-[#151515]/80 backdrop-blur-xl border border-white/[0.05] rounded-[24px] px-6 flex justify-between items-center shadow-2xl relative">
           
           <Link href="/" className="flex items-center gap-2 group">
