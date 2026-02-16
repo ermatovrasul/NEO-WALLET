@@ -2,32 +2,28 @@
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { 
-  LayoutGrid, PlusCircle, ArrowUpRight, CreditCard, 
-  ArrowDownLeft, BarChart3, History, Wallet, Settings, LogOut, Bell
-} from 'lucide-react';
 import { LogoutModal } from '@/components/dashboard/deposit/modals/LogoutModal'; 
+import Image from 'next/image';
 
 const menu = [
   { group: 'Основное', items: [
-    { name: 'Главная', icon: <LayoutGrid size={18} />, path: '/dashboard' },
-    { name: 'Пополнить', icon: <PlusCircle size={18} />, path: '/dashboard/deposit' },
-    { name: 'Вывести', icon: <ArrowUpRight size={18} />, path: '/dashboard/withdraw' },
-    { name: 'Купить', icon: <CreditCard size={18} />, path: '/dashboard/buy' },
-    { name: 'Продать', icon: <ArrowDownLeft size={18} />, path: '/dashboard/sell' },
-    { name: 'Курс валют', icon: <BarChart3 size={18} />, path: '/dashboard/rates' },
+    { name: 'Главная', icon: '/icon/category.png', path: '/dashboard' },
+    { name: 'Пополнить', icon: '/icon/add-square.png', path: '/dashboard/deposit' },
+    { name: 'Вывести', icon: '/icon/card-receive.png', path: '/dashboard/withdraw' },
+    { name: 'Купить', icon: '/icon/trend-up.png', path: '/dashboard/buy' },
+    { name: 'Продать', icon: '/icon/trend-down.png', path: '/dashboard/sell' },
+    { name: 'Курс валют', icon: '/icon/dollar-square.png', path: '/dashboard/rates' },
   ]},
   { group: 'Дополнительно', items: [
-    { name: 'История операций', icon: <History size={18} />, path: '/dashboard/history' },
-    { name: 'Оплата услуг', icon: <Wallet size={18} />, path: '/dashboard/services' },
-    { name: 'Настройки', icon: <Settings size={18} />, path: '/dashboard/settings' },
+    { name: 'История операций', icon:'/icon/clock.png', path: '/dashboard/history' },
+    { name: 'Оплата услуг', icon: '/icon/receipt-2.png', path: '/dashboard/services' },
+    { name: 'Настройки', icon: '/icon/setting-3 (1).png', path: '/dashboard/settings' },
   ]}
 ];
 
 export const Sidebar = () => {
   const pathname = usePathname();
   const router = useRouter();
-  
   const [isLogoutOpen, setIsLogoutOpen] = useState(false);
 
   const handleLogoutConfirm = () => {
@@ -35,27 +31,34 @@ export const Sidebar = () => {
   };
 
   return (
-    <div className="flex flex-col h-full p-6">
-      
-      <nav className="flex-1 space-y-6">
+    <div className="flex flex-col h-full w-full">
+      <nav className="flex-1 flex flex-col gap-6">
         {menu.map((g) => (
-          <div key={g.group}>
-            <p className="text-[10px] text-[#4C4C4C] font-bold uppercase tracking-widest mb-3 px-2">{g.group}</p>
-            <div className="space-y-1">
+          <div key={g.group} className="flex flex-col gap-3">
+            <p className="text-[11px] text-[#4C4C4C] font-bold uppercase tracking-widest px-2">
+              {g.group}
+            </p>
+            
+            <div className="flex flex-col gap-1.5">
               {g.items.map((item) => {
                 const active = pathname === item.path;
                 return (
                   <Link 
                     key={item.name} 
                     href={item.path}
-                    className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all ${
+                    style={active ? { backgroundColor: '#FF030005', borderColor: '#E8CED9' } : {}}
+                    className={`flex items-center gap-3 px-3 py-2.5 rounded-[12px] transition-all duration-200 group border ${
                       active 
-                      ? "bg-white/[0.05] text-white border border-white/[0.05]" 
-                      : "text-[#4C4C4C] hover:text-[#A3A3A3]"
+                      ? "text-white shadow-sm" 
+                      : "text-[#7F7F7F] hover:text-[#A3A3A3] border-transparent"
                     }`}
                   >
-                    <span className={active ? "text-[#E50914]" : ""}>{item.icon}</span>
-                    <span className="text-sm font-medium">{item.name}</span>
+                    <span className={`${active ? "text-white" : "text-[#4C4C4C] group-hover:text-[#A3A3A3]"}`}>
+                      <Image src={item.icon} alt={item.name} width={20} height={20} />
+                    </span>
+                    <span className="text-[15px] font-medium tracking-tight">
+                      {item.name}
+                    </span>
                   </Link>
                 );
               })}
@@ -65,10 +68,10 @@ export const Sidebar = () => {
       </nav>
       <button 
         onClick={() => setIsLogoutOpen(true)}
-        className="flex items-center gap-3 px-3 py-2.5 text-[#4C4C4C] hover:text-red-500 transition-colors mt-auto"
+        className="flex items-center gap-3 px-3 py-2.5 text-[#4C4C4C] hover:text-red-500 transition-colors mt-8 group"
       >
-        <LogOut size={18} />
-        <span className="text-sm font-medium">Выйти</span>
+        <Image src="/icon/logout.png" alt="Logout" width={20} height={20} className="group-hover:brightness-125" />
+        <span className="text-[15px] font-medium">Выйти</span>
       </button>
       <LogoutModal 
         isOpen={isLogoutOpen} 

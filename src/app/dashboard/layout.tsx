@@ -5,23 +5,23 @@ import { Header } from "@/components/layout/Header";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-[#0D0D0D] flex flex-col">
+    <div className="min-h-screen bg-[#080808] text-white font-sans"> 
       <Header />
       
-      <main className="flex-1 flex items-start justify-center p-4 md:p-10 pt-24 pb-20">
-        <div className="w-full max-w-[1260px] bg-[#151515] border border-white/[0.05] rounded-[40px] flex overflow-hidden min-h-[850px]">
-          
-          <aside className="w-[300px] border-r border-white/[0.05] hidden lg:flex flex-col p-6">
+      <main className="max-w-7xl mx-auto px-6 md:px-0 py-10 flex gap-6">
+        <aside className="w-[320px] hidden lg:flex flex-col gap-4">
+          <div className="bg-[#121212] border border-[#1E1E1E] rounded-[24px] p-6">
             <BalanceCard />
-            <div className="h-[1px] w-full bg-white/[0.05] my-2" />
+          </div>
+          <div className="bg-[#121212] border border-[#1E1E1E] rounded-[24px] p-4 flex-1">
             <Sidebar />
-          </aside>
+          </div>
+          
+        </aside>
+        <section className="flex-1 bg-[#121212] border border-[#1E1E1E] rounded-[24px] p-8 min-h-[800px]">
+          {children}
+        </section>
 
-          <section className="flex-1 overflow-y-auto bg-[#0D0D0D]/30">
-            {children}
-          </section>
-
-        </div>
       </main>
       
       <Footer />
