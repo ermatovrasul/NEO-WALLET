@@ -2,13 +2,12 @@
 
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
+import { Navigation, Grid } from 'swiper/modules'; 
 import { User, ChevronLeft, ChevronRight } from 'lucide-react';
 
-// @ts-ignore
 import 'swiper/css';
-// @ts-ignore
 import 'swiper/css/navigation';
+import 'swiper/css/grid'; 
 
 const reviewsData = Array(12).fill({
   name: "Райан Гослинг",
@@ -20,9 +19,7 @@ export default function ReviewsPage() {
   return (
     <div className="bg-[#0D0D0D] min-h-screen pt-32 pb-20 relative overflow-hidden">
       <div className="absolute top-40 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#E50914]/20 blur-[150px] rounded-full pointer-events-none" />
-
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
           <div className="max-w-2xl">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">Отзывы</h1>
@@ -30,7 +27,6 @@ export default function ReviewsPage() {
               Читайте отзывы пользователей в реальном времени и убедитесь в надежности нашего сервиса.
             </p>
           </div>
-
           <div className="flex gap-3">
             <button className="review-prev w-14 h-14 rounded-full border border-white/5 bg-[#151515] flex items-center justify-center text-white hover:bg-[#E50914] hover:border-[#E50914] transition-all disabled:opacity-20">
               <ChevronLeft size={24} />
@@ -40,13 +36,16 @@ export default function ReviewsPage() {
             </button>
           </div>
         </div>
-
         <div className="mb-24">
           <Swiper
-            modules={[Navigation]}
-            spaceBetween={24}
+            modules={[Navigation, Grid]} 
+            spaceBetween={30}
             slidesPerView={1}
-            slidesPerGroup={1} 
+            slidesPerGroup={1}
+            grid={{
+              rows: 1,
+              fill: 'row'
+            }}
             navigation={{
               prevEl: '.review-prev',
               nextEl: '.review-next',
@@ -54,18 +53,15 @@ export default function ReviewsPage() {
             breakpoints={{
               1024: { 
                 slidesPerView: 3, 
-                slidesPerGroup: 3, 
-                grid: { rows: 2 }
+                grid: { rows: 2, fill: 'row' },
+                spaceBetween: 32
               },
             }}
-            className="!overflow-visible"
+            className="reviews-swiper !overflow-visible"
           >
-            {Array.from({ length: Math.ceil(reviewsData.length / 2) }).map((_, colIndex) => (
-              <SwiperSlide key={colIndex} className="flex flex-col gap-6 mb-6 h-auto">
-                <ReviewCard data={reviewsData[colIndex * 2]} />
-                {reviewsData[colIndex * 2 + 1] && (
-                  <ReviewCard data={reviewsData[colIndex * 2 + 1]} />
-                )}
+            {reviewsData.map((review, index) => (
+              <SwiperSlide key={index} className="h-auto mb-8"> 
+                <ReviewCard data={review} />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -96,8 +92,8 @@ export default function ReviewsPage() {
 
 function ReviewCard({ data }: { data: any }) {
   return (
-    <div className="bg-[#151515] border border-white/[0.05] p-8 rounded-[32px] flex flex-col justify-between hover:border-white/10 transition-all group w-full">
-      <div className="flex items-center gap-4 mb-1">
+    <div className="bg-[#151515] border border-white/[0.05] p-8 rounded-[32px] flex flex-col h-full hover:border-white/10 transition-all group">
+      <div className="flex items-center gap-4 mb-4">
         <div className="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center text-[#4C4C4C] group-hover:bg-[#E50914]/10 group-hover:text-[#E50914] transition-colors">
           <User size={24} />
         </div>

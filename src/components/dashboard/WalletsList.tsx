@@ -22,7 +22,7 @@ export const WalletsList = () => {
         {wallets.map((wallet, index) => (
           <div 
             key={index} 
-            className="flex flex-col sm:flex-row sm:items-center justify-between py-4 border-b border-white/[0.03] last:border-0 group hover:bg-white/[0.02] transition-colors px-3 rounded-2xl gap-4 sm:gap-0"
+            className="flex flex-col sm:flex-row sm:items-center justify-between py-4 border-b border-white/[0.03] last:border-0 group hover:bg-white/[0.02] transition-colors px-3 rounded-2xl gap-6 sm:gap-4"
           >
             <div className="flex items-center gap-4 min-w-[180px]">
               <div className="w-10 h-10 rounded-full bg-white/5 flex-shrink-0 flex items-center justify-center overflow-hidden border border-white/5">

@@ -1,6 +1,7 @@
 "use client";
 import Image from 'next/image';
-import { TrendingUp, TrendingDown } from 'lucide-react';
+import { TrendingUp, TrendingDown,  } from 'lucide-react';
+import Link from 'next/link';
 
 const miniCards = [
   { name: 'Bitcoin', symbol: 'BTC', price: '$52,291', change: '+0.25%', image: '/icon/Vector 10.png' },
@@ -61,7 +62,6 @@ export const CryptoMarket = () => {
           <div className="text-right">Действие</div>
         </div>
 
-        {/* List Items */}
         <div className="space-y-3">
           {cryptoList.map((coin) => (
             <div 
@@ -97,12 +97,12 @@ export const CryptoMarket = () => {
               </div>
 
               <div className="flex gap-2 w-full md:w-auto md:justify-end">
-                <button className="flex-1 md:flex-none bg-white/[0.05] md:bg-[#1A1A1A] hover:bg-[#252525] text-white px-5 py-3 rounded-xl text-[13px] font-bold transition-all border border-white/[0.05]">
+                <Link href="/dashboard/buy"><button className="flex-1 md:flex-none bg-white/[0.05] md:bg-[#1A1A1A] hover:bg-[#252525] text-white px-5 py-3 rounded-xl text-[13px] font-bold transition-all border border-white/[0.05]">
                   Купить
-                </button>
-                <button className="flex-1 md:flex-none border border-[#00C076]/30 hover:bg-[#00C076]/10 text-[#00C076] px-5 py-3 rounded-xl text-[13px] font-bold transition-all">
+                </button></Link>
+                <Link href="/dashboard/sell"><button className="flex-1 md:flex-none border border-[#00C076]/30 hover:bg-[#00C076]/10 text-[#00C076] px-5 py-3 rounded-xl text-[13px] font-bold transition-all">
                   Продать
-                </button>
+                </button></Link>
               </div>
 
             </div>

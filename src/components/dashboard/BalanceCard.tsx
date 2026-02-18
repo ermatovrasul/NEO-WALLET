@@ -10,7 +10,7 @@ export const BalanceCard = () => {
           </p>
           
           <div className="flex items-baseline gap-2">
-            <h2 className="text-white text-[28px] font-bold tracking-tight">
+            <h2 className="text-white text-[20px] font-bold tracking-tight">
               $2 500.80
             </h2>
           </div>

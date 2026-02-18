@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 const newsData = [
   {
@@ -41,7 +42,7 @@ export const News = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <Link href="/news"><div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {newsData.map((item) => (
           <div key={item.id} className="bg-[#151515] border border-white/[0.05] rounded-[24px] p- flex flex-col h-full group cursor-pointer hover:border-white/10 transition-all">
             <div className="relative h-[160px] w-full rounded-[16px] overflow-hidden mb-4 bg-[#1A1A1A]">
@@ -61,7 +62,7 @@ export const News = () => {
             </div>
           </div>
         ))}
-      </div>
+      </div></Link>
     </section>
   );
 };

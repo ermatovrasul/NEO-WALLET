@@ -16,7 +16,7 @@ const menu = [
   ]},
   { group: 'Дополнительно', items: [
     { name: 'История операций', icon:'/icon/clock.png', path: '/dashboard/history' },
-    { name: 'Оплата услуг', icon: '/icon/receipt-2.png', path: '/dashboard/services' },
+    { name: 'Оплата услуг', icon: '/icon/receipt-2.png', path: '/dashboard/payment' },
     { name: 'Настройки', icon: '/icon/setting-3 (1).png', path: '/dashboard/settings' },
   ]}
 ];

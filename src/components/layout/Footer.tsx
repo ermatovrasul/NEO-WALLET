@@ -8,10 +8,12 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
           
           <div className="md:col-span-4">
-            <div className="flex  flex-col gap-2 mb-4">
-              <Image src="/logo (1).png" alt="NEO Wallet Logo" width={42} height={42} />
-              <span className="text-xl font-bold text-white tracking-tight">NEO Wallet</span>
-            </div>
+            <Link href="/" className="flex flex-col gap-2 mb-4 group">
+              <Image src="/icon/logo (1).png" alt="NEO Wallet Logo" width={42} height={42} />
+              <span className="text-xl font-bold text-white tracking-tight group-hover:text-red-500 transition-colors">
+                NEO Wallet
+              </span>
+            </Link>
             <p className="text-[#4C4C4C] text-[13px] leading-relaxed max-w-[240px]">
               Ваша точка входа в мир криптовалют.
             </p>
@@ -22,10 +24,16 @@ export const Footer = () => {
             <div>
               <h4 className="text-white text-[13px] font-bold uppercase tracking-wider mb-6">Быстрые ссылки</h4>
               <ul className="space-y-3">
-                {['Главная', 'О компании', 'Новости', 'Вопросы/Ответ', 'Контакты'].map((item) => (
-                  <li key={item}>
-                    <Link href="#" className="text-white text-[13px] hover:text-white transition-colors">
-                      {item}
+                {[
+                  { name: 'Главная', path: '/' },
+                  { name: 'О компании', path: '/about' },
+                  { name: 'Новости', path: '/news' },
+                  { name: 'Вопросы/Ответ', path: '/faq' },
+                  { name: 'Контакты', path: '/contacts' },
+                ].map((item) => (
+                  <li key={item.name}>
+                    <Link href={item.path} className="text-[#888] text-[13px] hover:text-white transition-colors">
+                      {item.name}
                     </Link>
                   </li>
                 ))}
@@ -35,10 +43,14 @@ export const Footer = () => {
             <div>
               <h4 className="text-white text-[13px] font-bold uppercase tracking-wider mb-6">Регистрация</h4>
               <ul className="space-y-3">
-                {['Регистрация', 'Войти в личный кабинет', 'Забыли пароль?'].map((item) => (
-                  <li key={item}>
-                    <Link href="#" className="text-white text-[13px] hover:text-white transition-colors">
-                      {item}
+                {[
+                  { name: 'Регистрация', path: '/register' },
+                  { name: 'Войти в личный кабинет', path: '/login' },
+                  { name: 'Забыли пароль?', path: '/forgot-password' },
+                ].map((item) => (
+                  <li key={item.name}>
+                    <Link href={item.path} className="text-[#888] text-[13px] hover:text-white transition-colors">
+                      {item.name}
                     </Link>
                   </li>
                 ))}
@@ -48,10 +60,13 @@ export const Footer = () => {
             <div>
               <h4 className="text-white text-[13px] font-bold uppercase tracking-wider mb-6">Условия использования</h4>
               <ul className="space-y-3">
-                {['Публичная оферта', 'Политика конфиденциальности'].map((item) => (
-                  <li key={item}>
-                    <Link href="#" className="text-white text-[13px] hover:text-white transition-colors">
-                      {item}
+                {[
+                  { name: 'Публичная оферта', path: '/terms' },
+                  { name: 'Политика конфиденциальности', path: '/privacy' },
+                ].map((item) => (
+                  <li key={item.name}>
+                    <Link href={item.path} className="text-[#888] text-[13px] hover:text-white transition-colors">
+                      {item.name}
                     </Link>
                   </li>
                 ))}
