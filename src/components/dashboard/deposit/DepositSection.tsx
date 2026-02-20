@@ -36,7 +36,7 @@ export const DepositSection = () => {
   };
 
   return (
-    <section className="bg-[#151515] border border-white/[0.05] rounded-[32px] p-8 min-h-[500px]">
+    <section className=" rounded-[32px] p-2 min-h-[500px]">
       <div className="flex justify-between items-center mb-8">
         <h2 className="text-white text-xl font-bold font-['Inter']">Пополнить баланс</h2>
         <div className="flex gap-2">
@@ -71,7 +71,7 @@ export const DepositSection = () => {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               onClick={() => setSelectedMethod(item)}
-              className="bg-black/20 border border-white/[0.05] p-6 rounded-[24px] hover:border-[#E50914]/40 transition-all cursor-pointer group relative overflow-hidden"
+              className="bg-[#262626] border border-white/[0.05] p-6 rounded-[24px] hover:border-[#E50914]/40 transition-all cursor-pointer group relative overflow-hidden"
             >
               <div className="flex justify-between items-start mb-4">
                 <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center">

@@ -68,7 +68,7 @@ export const Sidebar = () => {
       </nav>
       <button 
         onClick={() => setIsLogoutOpen(true)}
-        className="flex items-center gap-3 px-3 py-2.5 text-[#4C4C4C] hover:text-red-500 transition-colors mt-8 group"
+        className="flex items-center gap-3 px-3 py-2.5 text-[#4C4C4C] hover:text-red-500 transition-colors mt-2 group"
       >
         <Image src="/icon/logout.png" alt="Logout" width={20} height={20} className="group-hover:brightness-125" />
         <span className="text-[15px] font-medium">Выйти</span>

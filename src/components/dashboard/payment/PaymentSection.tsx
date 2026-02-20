@@ -40,7 +40,7 @@ export default function PaymentSection() {
   };
 
   return (
-    <section className="bg-[#161616] rounded-[24px] md:rounded-3xl border border-white/5 p-4 md:p-8 min-h-[450px]">
+    <section className=" p-4 md:p-3 ">
       
       <div className="flex items-center gap-2 text-[10px] md:text-sm text-gray-500 mb-6 overflow-x-auto no-scrollbar whitespace-nowrap pb-2">
         <button onClick={goBack} className="hover:text-white transition shrink-0">
@@ -51,7 +51,7 @@ export default function PaymentSection() {
       </div>
 
       {step === 'categories' && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-[600px]">
           <CategoryCard 
             title="Банковские услуги, кошельки" 
             count="21 услуга" 

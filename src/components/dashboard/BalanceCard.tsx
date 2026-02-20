@@ -2,7 +2,7 @@ import { Bell } from "lucide-react";
 
 export const BalanceCard = () => {
   return (
-    <div className="p-2 mb-8"> 
+    <div className=" "> 
       <div className="flex items-center justify-between mb-4">
         <div>
           <p className="text-[#4C4C4C] text-[13px] font-medium mb-1">

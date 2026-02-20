@@ -23,13 +23,13 @@ export default function SellCrypto() {
   );
 
   return (
-    <div className="w-full bg-[#151515] border border-white/5 rounded-[32px] md:rounded-[40px] p-5 md:p-10 shadow-2xl overflow-hidden">
+    <div className="w-full  p-5 md:p-2 shadow-2xl overflow-hidden">
       
       <h1 className="text-xl md:text-2xl font-bold text-white mb-6 md:mb-8 tracking-tight">
         Продать криптовалюту
       </h1>
       
-      <div className="relative mb-6 md:mb-10 group">
+      <div className="relative mb-6 md:mb-4 group">
         <Search 
           className="absolute left-4 md:left-5 top-1/2 -translate-y-1/2 text-[#4C4C4C] group-focus-within:text-[#E50914] transition-colors" 
           size={18} 

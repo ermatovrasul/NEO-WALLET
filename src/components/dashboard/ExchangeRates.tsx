@@ -1,6 +1,6 @@
 export const ExchangeRates = () => {
   return (
-    <div className="bg-[#151515] border border-white/[0.05] rounded-[24px] p-5">
+    <div className="bg-[#151515] border border-white/[0.05] rounded-[24px] p-8">
       <h4 className="text-white text-sm font-bold mb-4">Курс обмена</h4>
       <table className="w-full text-[13px]">
         <thead>

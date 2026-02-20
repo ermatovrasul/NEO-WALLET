@@ -19,8 +19,8 @@ export const WithdrawSection = () => {
   const [selectedMethod, setSelectedMethod] = useState<any>(null);
 
   return (
-    <section className="bg-[#151515] border border-white/[0.05] rounded-[32px] p-8">
-      <h2 className="text-white text-xl font-bold mb-8">Пополнить баланс</h2>
+    <section className=" p-2">
+      <h2 className="text-white text-xl font-bold mb-8">Вывести баланс</h2>
 
       <div className="flex gap-2 mb-8 bg-black/40 p-1 rounded-2xl w-fit border border-white/[0.02]">
         {tabs.map((tab) => (
@@ -42,7 +42,7 @@ export const WithdrawSection = () => {
               key={coin.id}
               whileHover={{ scale: 1.02 }}
               onClick={() => setSelectedMethod({ ...coin, type: 'crypto' })}
-              className="bg-black/20 border border-white/[0.05] p-6 rounded-[24px] cursor-pointer hover:border-[#E50914]/40 transition-all text-center"
+              className="bg-[#262626] border border-white/[0.05] p-6 rounded-[24px] cursor-pointer hover:border-[#E50914]/40 transition-all text-center"
             >
               <img src={coin.icon} alt="" className="w-10 h-10 mx-auto mb-4" />
               <h4 className="text-white text-sm font-bold">{coin.name}</h4>

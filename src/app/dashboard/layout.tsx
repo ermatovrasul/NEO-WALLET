@@ -9,7 +9,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <Header />
       
       <main className="max-w-7xl mx-auto px-6 md:px-0 py-10 flex gap-6">
-        <aside className="w-[320px] hidden lg:flex flex-col gap-4">
+        <aside className="w-[260px] hidden lg:flex flex-col gap-4">
           <div className="bg-[#121212] border border-[#1E1E1E] rounded-[24px] p-6">
             <BalanceCard />
           </div>
@@ -18,7 +18,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           </div>
           
         </aside>
-        <section className="flex-1 bg-[#121212] border border-[#1E1E1E] rounded-[24px] p-8 min-h-[800px]">
+        <section className="flex-1 bg-[#121212] border border-[#1E1E1E] rounded-[24px] p-3 min-h-[800px]">
           {children}
         </section>
 

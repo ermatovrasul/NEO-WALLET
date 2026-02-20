@@ -10,7 +10,7 @@ export default function DashboardPage() {
         <WalletsList />
       </div>
 
-      <div className="w-full lg:w-[350px] p-6 space-y-6 bg-[#0D0D0D]/20">
+      <div className="w-full lg:w-[350px] p-2 space-y-6 bg-[#0D0D0D]/20">
         <ExchangeRates />
         <DailyLimits />
         <PersonalInfo />

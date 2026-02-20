@@ -18,7 +18,7 @@ export default function CurrencyRatesPage() {
   return (
     <div className="flex flex-col lg:flex-row gap-4 md:gap-6 w-full animate-in fade-in duration-500 p-2 md:p-0">
       
-      <div className="flex-1 bg-[#151515] border border-white/5 rounded-[24px] md:rounded-[40px] p-5 md:p-8 shadow-xl">
+      <div className="flex-1  p-5 md:p-3 shadow-xl">
         <h1 className="text-xl md:text-2xl font-bold text-white mb-6 md:mb-8 tracking-tight">
           Курс валют
         </h1>
