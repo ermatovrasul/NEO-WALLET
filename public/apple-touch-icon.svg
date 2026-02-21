@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Apple touch icon as SVG (modern iOS will rasterize). Consider exporting 180x180 PNG for best compatibility -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="180" height="180" role="img" aria-labelledby="appleTitle">
+  <title id="appleTitle">Neo-Wallet</title>
+  <defs>
+    <linearGradient id="nw-grad-apple" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#07B2A6"/>
+      <stop offset="100%" stop-color="#0B6EA6"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="10" fill="url(#nw-grad-apple)" />
+  <g stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" transform="translate(0,0)">
+    <path d="M22 22 L22 42" />
+    <path d="M22 22 L36 38" />
+    <path d="M36 26 L36 42" />
+  </g>
+</svg>
