@@ -63,16 +63,19 @@ const HistoryTable = () => {
   );
 };
 
-const StatusBadge = ({ status} : { status: string }) => {
+const StatusBadge = ({ status }: { status: string }) => {
   const baseClasses = "py-1.5 rounded-full text-[12px] inline-block min-w-[110px] text-center border";
-  const styles = {
+  
+  const styles: { [key: string]: string } = {
     'Потдверждено': 'bg-[#1b2c24] text-[#4ade80] border-[#2d4d3d]',
     'Отклонено': 'bg-[#2c1b1b] text-[#ff4d4d] border-[#4d2d2d]',
     'В рассмотрении': 'bg-[#2c241b] text-[#ffb34d] border-[#4d3d2d]'
   };
 
+  const currentStyle = styles[status] || styles['В рассмотрении'];
+
   return (
-    <span className={`${baseClasses} ${styles[status] || styles['В рассмотрении']}`}>
+    <span className={`${baseClasses} ${currentStyle}`}>
       {status}
     </span>
   );
