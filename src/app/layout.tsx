@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+// @ts-ignore
 import "./globals.css";
 
 const geistSans = Geist({
@@ -21,27 +22,27 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | NeoWallet - Коопсуз Крипто Капчык",
-    default: "NeoWallet | Криптовалютаны коопсуз сактоо",
+    template: "%s | NeoExchange - Коопсуз Крипто Капчык",
+    default: "NeoExchange  | Криптовалютаны коопсуз сактоо",
   },
-  description: "NeoWallet - бул сиздин санариптик активдериңизди сактоо, жөнөтүү жана алуу үчүн эң ишенимдүү децентралдаштырылган крипто-капчык. Bitcoin, Ethereum жана башка токендерди колдойт.",
-  keywords: ["крипто капчык", "bitcoin wallet kygyzstan", "криптовалюта сактоо", "blockchain", "NeoWallet", "коопсуз крипто"],
-  authors: [{ name: "NeoWallet Team" }],
-  metadataBase: new URL("https://neo-wallet.kg"), 
+  description: "NeoExchange  - бул сиздин санариптик активдериңизди сактоо, жөнөтүү жана алуу үчүн эң ишенимдүү децентралдаштырылган крипто-капчык. Bitcoin, Ethereum жана башка токендерди колдойт.",
+  keywords: ["крипто капчык", "bitcoin wallet kygyzstan", "криптовалюта сактоо", "blockchain", "NeoExchange", "коопсуз крипто"],
+  authors: [{ name: "NeoExchange Team" }],
+  metadataBase: new URL("https://neo-exchange.kg"), 
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "NeoWallet - Сиздин ишенимдүү крипто өнөктөшүңүз",
+    title: "NeoExchange - Сиздин ишенимдүү крипто өнөктөшүңүз",
     description: "Активдериңизди децентралдаштырылган дүйнөдө коопсуз башкарыңыз.",
-    url: "https://neo-wallet.kg",
-    siteName: "NeoWallet",
+    url: "https://neo-exchange.kg",
+    siteName: "NeoExchange",
     images: [
       {
         url: "/og-image.jpg", 
         width: 1200,
         height: 630,
-        alt: "NeoWallet Interface",
+        alt: "NeoExchange Interface",
       },
     ],
     locale: "ky_KG",
@@ -49,7 +50,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "NeoWallet | Коопсуз Крипто Капчык",
+    title: "NeoExchange | Коопсуз Крипто Капчык",
     description: "Криптовалютаны оңой жана коопсуз башкаруу.",
     images: ["/og-image.jpg"],
   },

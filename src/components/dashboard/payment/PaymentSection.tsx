@@ -40,10 +40,10 @@ export default function PaymentSection() {
   };
 
   return (
-    <section className=" p-4 md:p-3 ">
+    <section className=" p-2 md:p-3 max-h-[400px] mx-auto  overflow-hidden">
       
-      <div className="flex items-center gap-2 text-[10px] md:text-sm text-gray-500 mb-6 overflow-x-auto no-scrollbar whitespace-nowrap pb-2">
-        <button onClick={goBack} className="hover:text-white transition shrink-0">
+      <div className="flex items-center gap-2 text-[10px]  md:text-sm text-gray-500 mb-6 overflow-x-auto no-scrollbar whitespace-nowrap pb-2">
+        <button onClick={goBack} className=" text-xl md:text-2xl font-bold text-white transition shrink-0">
           Оплата услуг
         </button>
         {category && <span className="shrink-0">— {category === 'banks' ? 'Банковские услуги' : 'Мобильная связь'}</span>}

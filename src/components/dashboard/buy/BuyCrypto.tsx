@@ -23,7 +23,7 @@ export default function BuyCryptoContent() {
   );
 
   return (
-    <div className="w-full   p-5 md:p-2 shadow-2xl overflow-hidden">
+    <div className="w-full   p-1 md:p-2 shadow-2xl overflow-hidden">
       
       <h1 className="text-xl md:text-2xl font-bold text-white mb-6 md:mb-8 tracking-tight">
         Купить криптовалюту

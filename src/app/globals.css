@@ -1,19 +1,16 @@
 @import "tailwindcss";
 
 @theme {
-  /* Дизайндагы негизги түстөр */
   --color-background: #0D0D0D;
   --color-surface: #151515;
   --color-primary: #E50914;
   --color-secondary: #A3A3A3;
   --color-border: rgba(255, 255, 255, 0.1);
 
-  /* Анимациялар жана башкалар */
   --radius-xl: 1rem;
   --radius-2xl: 1.5rem;
 }
 
-/* Стандарттык стилдерди тазалоо жана фонду берүү */
 @layer base {
   :root {
     --background: #0D0D0D;
@@ -29,7 +26,6 @@
   }
 }
 
-/* Скриншоттогудай градиенттүү фон (Hero section үчүн) */
 .bg-neo-gradient {
   background: radial-gradient(
     50% 50% at 50% 0%, 
@@ -38,7 +34,6 @@
   );
 }
 
-/* Карталар үчүн стиль */
 .neo-card {
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);

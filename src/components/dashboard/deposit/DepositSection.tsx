@@ -1,5 +1,6 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect, Suspense } from 'react'; 
+import { useSearchParams } from 'next/navigation'; 
 import { motion, AnimatePresence } from 'framer-motion';
 import { CryptoModal } from '@/components/dashboard/deposit/modals/CryptoModal';
 import { TerminalModal } from '@/components/dashboard/deposit/modals/TerminalModal';
@@ -13,14 +14,26 @@ const tabs = [
 ];
 
 export const DepositSection = () => {
+  return (
+    <Suspense fallback={<div className="text-white">Загрузка...</div>}>
+      <DepositContent />
+    </Suspense>
+  );
+};
+
+const DepositContent = () => {
+  const searchParams = useSearchParams();
+  const methodParam = searchParams.get('method'); 
+
   const [activeTab, setActiveTab] = useState('crypto');
   const [selectedMethod, setSelectedMethod] = useState<any>(null);
 
   const methods = {
     crypto: [
-      { id: 'usdt', name: 'Tether', symbol: 'USDT', icon: '/icon/Ellipse 10.png' },
-      { id: 'btc', name: 'Bitcoin', symbol: 'BTC', icon: '/icon/Ellipse 11.png' },
-      { id: 'eth', name: 'Ethereum', symbol: 'ETH', icon: '/icon/Ellipse 10 (1).png' },
+      { id: 'btc', name: 'Bitcoin', symbol: 'BTC', balance: '0.000000', usd: '$0.00', icon: 'https://cryptologos.cc/logos/bitcoin-btc-logo.png' },
+      { id: 'eth', name: 'Ethereum', symbol: 'ETH', balance: '0.000000', usd: '$0.00', icon: 'https://cryptologos.cc/logos/ethereum-eth-logo.png' },
+      { id: 'sol', name: 'Solana', symbol: 'SOL', balance: '0.000000', usd: '$0.00', icon: 'https://cryptologos.cc/logos/solana-sol-logo.png' },
+      { id: 'usdt', name: 'Tether', symbol: 'USDT', balance: '0.000000', usd: '$0.00', icon: 'https://cryptologos.cc/logos/tether-usdt-logo.png' },
     ],
     fiat: [
       { id: 'mbank', name: 'Mbank', desc: '0%, днем в будни', icon: '/icon/mbank.png' },
@@ -35,10 +48,26 @@ export const DepositSection = () => {
     ]
   };
 
+  useEffect(() => {
+    if (methodParam) {
+      const allMethods = [...methods.crypto, ...methods.fiat, ...methods.terminal, ...methods.swift];
+      const found = allMethods.find(m => 
+        m.id === methodParam.toLowerCase() || 
+        (m.symbol && m.symbol.toLowerCase() === methodParam.toLowerCase())
+      );
+      
+      if (found) {
+        setSelectedMethod(found);
+        if (methods.crypto.some(c => c.id === found.id)) setActiveTab('crypto');
+        if (methods.fiat.some(f => f.id === found.id)) setActiveTab('fiat');
+      }
+    }
+  }, [methodParam]);
+
   return (
     <section className=" rounded-[32px] p-2 min-h-[500px]">
       <div className="flex justify-between items-center mb-8">
-        <h2 className="text-white text-xl font-bold font-['Inter']">Пополнить баланс</h2>
+        <h2 className="text-white text-xl font-bold ">Пополнить баланс</h2>
         <div className="flex gap-2">
             <span className="px-3 py-1 bg-white/5 rounded-lg text-[10px] text-white/40 font-bold uppercase">KGS</span>
             <span className="px-3 py-1 bg-white/5 rounded-lg text-[10px] text-white/40 font-bold uppercase">USD</span>
@@ -61,7 +90,7 @@ export const DepositSection = () => {
 
       <motion.div 
         layout
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
+        className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4"
       >
         <AnimatePresence mode='popLayout'>
           {methods[activeTab as keyof typeof methods].map((item: any) => (
@@ -71,7 +100,7 @@ export const DepositSection = () => {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               onClick={() => setSelectedMethod(item)}
-              className="bg-[#262626] border border-white/[0.05] p-6 rounded-[24px] hover:border-[#E50914]/40 transition-all cursor-pointer group relative overflow-hidden"
+              className={`bg-[#262626] border p-6 rounded-[24px] hover:border-[#E50914]/40 transition-all cursor-pointer group relative overflow-hidden ${selectedMethod?.id === item.id ? 'border-[#E50914]' : 'border-white/[0.05]'}`}
             >
               <div className="flex justify-between items-start mb-4">
                 <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center">
@@ -86,7 +115,9 @@ export const DepositSection = () => {
         </AnimatePresence>
       </motion.div>
 
-      {selectedMethod?.id === 'usdt' && <CryptoModal isOpen={true} onClose={() => setSelectedMethod(null)} />}
+      {(selectedMethod?.id === 'btc' || selectedMethod?.id === 'eth' || selectedMethod?.id === 'sol' || selectedMethod?.id === 'usdt') && (
+        <CryptoModal isOpen={true} coin={selectedMethod} onClose={() => setSelectedMethod(null)} />
+      )}
       {selectedMethod?.id === 'onoi' && <TerminalModal isOpen={true} onClose={() => setSelectedMethod(null)} />}
       {selectedMethod?.id === 'swift_usd' && <SwiftModal isOpen={true} onClose={() => setSelectedMethod(null)} />}
     </section>

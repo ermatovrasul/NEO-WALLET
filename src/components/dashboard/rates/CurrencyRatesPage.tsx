@@ -16,9 +16,9 @@ export default function CurrencyRatesPage() {
   const router = useRouter();
 
   return (
-    <div className="flex flex-col lg:flex-row gap-4 md:gap-6 w-full animate-in fade-in duration-500 p-2 md:p-0">
+    <div className="flex flex-col lg:flex-row gap-4 md:gap-6 w-full h-full animate-in fade-in duration-500 p-1 md:p-0">
       
-      <div className="flex-1  p-5 md:p-3 shadow-xl">
+      <div className="flex-1  p-1 md:p-3 shadow-xl">
         <h1 className="text-xl md:text-2xl font-bold text-white mb-6 md:mb-8 tracking-tight">
           Курс валют
         </h1>
@@ -28,7 +28,7 @@ export default function CurrencyRatesPage() {
             <div 
               key={index}
               onClick={() => router.push(`/buy/${item.symbol.toLowerCase()}`)}
-              className="grid grid-cols-2 items-center p-3 md:p-4 rounded-2xl hover:bg-white/[0.03] active:bg-white/[0.05] cursor-pointer transition-all border-b border-white/[0.02] last:border-0 group"
+              className="grid grid-cols-2 items-center p-2 md:p-4 rounded-2xl hover:bg-white/[0.03] active:bg-white/[0.05] cursor-pointer transition-all border-b border-white/[0.02] last:border-0 group"
             >
               <div className="flex items-center gap-3 md:gap-4">
                 <div className="w-9 h-9 md:w-10 md:h-10 bg-[#0D0D0D] border border-white/5 rounded-full flex items-center justify-center font-bold text-[#E50914] text-sm md:text-base group-hover:scale-110 transition-transform">

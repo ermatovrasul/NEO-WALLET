@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import { TrendingUp, TrendingDown,  } from 'lucide-react';
 import Link from 'next/link';
+import MiniChart from './MiniChart';
 
 const miniCards = [
   { name: 'Bitcoin', symbol: 'BTC', price: '$52,291', change: '+0.25%', image: '/icon/Vector 10.png' },
@@ -40,7 +41,7 @@ export const CryptoMarket = () => {
               </div>
             </div>
             <div className="w-16 h-8">
-              <Image src={item.image} width={64} height={32} alt={item.name} className="w-full h-full object-contain" />
+              <MiniChart isUp={item.change.startsWith('+')} />
             </div>
           </div>
         ))} 
