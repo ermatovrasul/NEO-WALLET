@@ -6,6 +6,22 @@ import { CryptoModal } from '@/components/dashboard/deposit/modals/CryptoModal';
 import { TerminalModal } from '@/components/dashboard/deposit/modals/TerminalModal';
 import { SwiftModal } from '@/components/dashboard/deposit/modals/SwiftModal';
 
+// 1. Интерфейстерді анықтаймыз
+interface BaseMethod {
+  id: string;
+  name: string;
+  icon: string;
+  desc?: string;
+}
+
+interface CryptoMethod extends BaseMethod {
+  symbol: string;
+  balance: string;
+  usd: string;
+}
+
+type PaymentMethod = CryptoMethod | BaseMethod;
+
 const tabs = [
   { id: 'crypto', label: 'Криптовалюты' },
   { id: 'fiat', label: 'Фиат' },
@@ -26,9 +42,9 @@ const DepositContent = () => {
   const methodParam = searchParams.get('method'); 
 
   const [activeTab, setActiveTab] = useState('crypto');
-  const [selectedMethod, setSelectedMethod] = useState<any>(null);
+  const [selectedMethod, setSelectedMethod] = useState<PaymentMethod | null>(null);
 
-  const methods = {
+  const methods: Record<string, PaymentMethod[]> = {
     crypto: [
       { id: 'btc', name: 'Bitcoin', symbol: 'BTC', balance: '0.000000', usd: '$0.00', icon: 'https://cryptologos.cc/logos/bitcoin-btc-logo.png' },
       { id: 'eth', name: 'Ethereum', symbol: 'ETH', balance: '0.000000', usd: '$0.00', icon: 'https://cryptologos.cc/logos/ethereum-eth-logo.png' },
@@ -50,16 +66,16 @@ const DepositContent = () => {
 
   useEffect(() => {
     if (methodParam) {
-      const allMethods = [...methods.crypto, ...methods.fiat, ...methods.terminal, ...methods.swift];
+      const allMethods = Object.values(methods).flat();
       const found = allMethods.find(m => 
         m.id === methodParam.toLowerCase() || 
-        (m.symbol && m.symbol.toLowerCase() === methodParam.toLowerCase())
+        ('symbol' in m && m.symbol.toLowerCase() === methodParam.toLowerCase()) // 3. 'in' операторымен тексеру
       );
       
       if (found) {
         setSelectedMethod(found);
         if (methods.crypto.some(c => c.id === found.id)) setActiveTab('crypto');
-        if (methods.fiat.some(f => f.id === found.id)) setActiveTab('fiat');
+        else if (methods.fiat.some(f => f.id === found.id)) setActiveTab('fiat');
       }
     }
   }, [methodParam]);
@@ -88,12 +104,9 @@ const DepositContent = () => {
         ))}
       </div>
 
-      <motion.div 
-        layout
-        className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4"
-      >
+      <motion.div layout className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
         <AnimatePresence mode='popLayout'>
-          {methods[activeTab as keyof typeof methods].map((item: any) => (
+          {methods[activeTab].map((item) => (
             <motion.div
               key={item.id}
               initial={{ opacity: 0, scale: 0.95 }}
@@ -106,7 +119,7 @@ const DepositContent = () => {
                 <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center">
                    <img src={item.icon} alt="" className="w-8 h-8 object-contain" />
                 </div>
-                {item.symbol && <span className="text-[10px] font-black text-white/20 uppercase">{item.symbol}</span>}
+                {'symbol' in item && <span className="text-[10px] font-black text-white/20 uppercase">{item.symbol}</span>}
               </div>
               <h4 className="text-white text-sm font-bold mb-1">{item.name}</h4>
               <p className="text-[#4C4C4C] text-[11px] leading-tight">{item.desc || 'Быстрое пополнение'}</p>
@@ -115,8 +128,12 @@ const DepositContent = () => {
         </AnimatePresence>
       </motion.div>
 
-      {(selectedMethod?.id === 'btc' || selectedMethod?.id === 'eth' || selectedMethod?.id === 'sol' || selectedMethod?.id === 'usdt') && (
-        <CryptoModal isOpen={true} coin={selectedMethod} onClose={() => setSelectedMethod(null)} />
+      {selectedMethod && ['btc', 'eth', 'sol', 'usdt'].includes(selectedMethod.id) && (
+        <CryptoModal 
+            isOpen={true} 
+            coin={selectedMethod as CryptoMethod} 
+            onClose={() => setSelectedMethod(null)} 
+        />
       )}
       {selectedMethod?.id === 'onoi' && <TerminalModal isOpen={true} onClose={() => setSelectedMethod(null)} />}
       {selectedMethod?.id === 'swift_usd' && <SwiftModal isOpen={true} onClose={() => setSelectedMethod(null)} />}
