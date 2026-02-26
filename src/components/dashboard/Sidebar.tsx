@@ -5,6 +5,10 @@ import { useState } from 'react';
 import { LogoutModal } from '@/components/dashboard/deposit/modals/LogoutModal'; 
 import Image from 'next/image';
 
+interface SidebarProps {
+  onLogoutClick?: () => void;
+}
+
 const menu = [
   { group: 'Основное', items: [
     { name: 'Главная', icon: '/icon/category.png', path: '/dashboard' },
@@ -21,7 +25,7 @@ const menu = [
   ]}
 ];
 
-export const Sidebar = () => {
+export const Sidebar = ({ onLogoutClick }: SidebarProps) => {
   const pathname = usePathname();
   const router = useRouter();
   const [isLogoutOpen, setIsLogoutOpen] = useState(false);
@@ -65,14 +69,13 @@ export const Sidebar = () => {
             </div>
           </div>
         ))}
-      </nav>
-      <button 
-        onClick={() => setIsLogoutOpen(true)}
-        className="flex items-center gap-3 px-3 py-2.5 text-[#4C4C4C] hover:text-red-500 transition-colors mt-2 group"
+         <button 
+        onClick={onLogoutClick} 
+        className="flex items-center gap-3 px-3 py-2.5 text-[#4C4C4C] hover:text-red-500 transition-colors"
       >
-        <Image src="/icon/logout.png" alt="Logout" width={20} height={20} className="group-hover:brightness-125" />
-        <span className="text-[15px] font-medium">Выйти</span>
+        <span>Выйти</span>
       </button>
+      </nav>
       <LogoutModal 
         isOpen={isLogoutOpen} 
         onClose={() => setIsLogoutOpen(false)} 

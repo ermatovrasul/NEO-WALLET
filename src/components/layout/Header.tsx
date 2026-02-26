@@ -1,5 +1,4 @@
 "use client";
-
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X, ChevronRight } from 'lucide-react'; 
@@ -19,9 +18,11 @@ export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
+  if (pathname.startsWith('/dashboard')) return null;
+
   return (
     <>
-      <header className=" top-6 w-full z-[100] px-4">
+      <header className="fixed top-6 w-full z-[100] px-4">
         <div className="max-w-7xl mx-auto h-[76px] bg-[#151515]/80 backdrop-blur-xl border border-white/[0.05] rounded-[24px] px-6 flex justify-between items-center shadow-2xl relative">
           
           <Link href="/" className="flex items-center gap-2 group">
@@ -50,7 +51,7 @@ export const Header = () => {
           <div className="flex items-center gap-3">
             <Link 
               href="/register" 
-              className="hidden md:block bg-[#E50914] hover:bg-[#CC0812] text-white px-7 py-3 rounded-2xl text-[13px] font-bold transition-all shadow-lg shadow-red-600/10 active:scale-95"
+              className="hidden md:block bg-[#E50914] hover:bg-[#CC0812] text-white px-7 py-3 rounded-2xl text-[13px] font-bold transition-all"
             >
               Регистрация
             </Link>
@@ -69,63 +70,25 @@ export const Header = () => {
         {isOpen && (
           <>
             <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
               className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[110] lg:hidden"
             />
-
             <motion.div 
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }}
               className="fixed top-0 right-0 h-full w-[300px] bg-[#0D0D0D] border-l border-white/[0.05] z-[120] lg:hidden p-8 flex flex-col shadow-2xl"
             >
               <div className="flex justify-between items-center mb-12">
-                <div className="w-9 h-9 bg-[#E50914] rounded-full flex items-center justify-center text-[10px] font-black text-white italic">
-                  NEO
-                </div>
-                <button 
-                  onClick={() => setIsOpen(false)}
-                  className="p-2 text-[#4C4C4C] hover:text-white transition-colors"
-                >
-                  <X size={24} />
-                </button>
+                <div className="w-9 h-9 bg-[#E50914] rounded-full flex items-center justify-center text-[10px] font-black text-white italic">NEO</div>
+                <button onClick={() => setIsOpen(false)} className="p-2 text-[#4C4C4C] hover:text-white"><X size={24} /></button>
               </div>
-
               <nav className="flex flex-col gap-6 flex-1">
-                {navLinks.map((item) => {
-                  const isActive = pathname === item.path;
-                  return (
-                    <Link 
-                      key={item.name} 
-                      href={item.path} 
-                      onClick={() => setIsOpen(false)}
-                      className={`flex items-center justify-between text-[16px] font-bold uppercase tracking-widest transition-colors ${
-                        isActive ? "text-[#E50914]" : "text-[#A3A3A3] hover:text-white"
-                      }`}
-                    >
-                      {item.name}
-                      <ChevronRight size={16} className={isActive ? "opacity-100" : "opacity-20"} />
-                    </Link>
-                  );
-                })}
+                {navLinks.map((item) => (
+                  <Link key={item.name} href={item.path} onClick={() => setIsOpen(false)} className="flex items-center justify-between text-[16px] font-bold uppercase tracking-widest text-[#A3A3A3] hover:text-white">
+                    {item.name} <ChevronRight size={16} />
+                  </Link>
+                ))}
               </nav>
-
-              <div className="mt-auto">
-                <Link 
-                  href="/register" 
-                  onClick={() => setIsOpen(false)}
-                  className="block w-full bg-[#E50914] text-white py-5 rounded-2xl text-center font-bold uppercase text-[13px] tracking-widest shadow-lg shadow-red-900/20"
-                >
-                  Регистрация
-                </Link>
-                <p className="text-[#4C4C4C] text-[10px] text-center mt-6 uppercase tracking-widest font-medium">
-                  © 2026 NEO Wallet
-                </p>
-              </div>
             </motion.div>
           </>
         )}
