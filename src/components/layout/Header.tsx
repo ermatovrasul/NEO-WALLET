@@ -1,7 +1,7 @@
 "use client";
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, ChevronRight } from 'lucide-react'; 
+import { Menu, X, ChevronRight, UserPlus } from 'lucide-react'; 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -51,7 +51,7 @@ export const Header = () => {
           <div className="flex items-center gap-3">
             <Link 
               href="/register" 
-              className="hidden md:block bg-[#E50914] hover:bg-[#CC0812] text-white px-7 py-3 rounded-2xl text-[13px] font-bold transition-all"
+              className="hidden lg:block bg-[#E50914] hover:bg-[#CC0812] text-white px-7 py-3 rounded-2xl text-[13px] font-bold transition-all"
             >
               Регистрация
             </Link>
@@ -80,15 +80,34 @@ export const Header = () => {
             >
               <div className="flex justify-between items-center mb-12">
                 <div className="w-9 h-9 bg-[#E50914] rounded-full flex items-center justify-center text-[10px] font-black text-white italic">NEO</div>
-                <button onClick={() => setIsOpen(false)} className="p-2 text-[#4C4C4C] hover:text-white"><X size={24} /></button>
+                <button onClick={() => setIsOpen(false)} className="p-2 text-[#4C4C4C] hover:text-white transition-colors">
+                  <X size={24} />
+                </button>
               </div>
+
               <nav className="flex flex-col gap-6 flex-1">
                 {navLinks.map((item) => (
-                  <Link key={item.name} href={item.path} onClick={() => setIsOpen(false)} className="flex items-center justify-between text-[16px] font-bold uppercase tracking-widest text-[#A3A3A3] hover:text-white">
-                    {item.name} <ChevronRight size={16} />
+                  <Link 
+                    key={item.name} 
+                    href={item.path} 
+                    onClick={() => setIsOpen(false)} 
+                    className="flex items-center justify-between text-[14px] font-bold uppercase tracking-widest text-[#A3A3A3] hover:text-white transition-colors"
+                  >
+                    {item.name} <ChevronRight size={16} className="text-[#4C4C4C]" />
                   </Link>
                 ))}
               </nav>
+
+              <div className="pt-8 border-t border-white/[0.05]">
+                <Link 
+                  href="/register" 
+                  onClick={() => setIsOpen(false)}
+                  className="w-full bg-[#E50914] hover:bg-[#CC0812] text-white py-4 rounded-2xl text-[14px] font-bold flex items-center justify-center gap-2 transition-all shadow-[0_10px_20px_rgba(229,9,20,0.15)]"
+                >
+                  <UserPlus size={18} />
+                  Регистрация
+                </Link>
+              </div>
             </motion.div>
           </>
         )}
