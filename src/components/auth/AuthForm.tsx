@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { ChevronLeft } from 'lucide-react'; 
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -16,13 +17,22 @@ export default function RegisterPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Каттоо маалыматтары:", formData);
-    
     router.push('/dashboard');
   };
 
   return (
     <div className="min-h-screen bg-[#0D0D0D] flex flex-col justify-center items-center relative overflow-hidden px-6">
       
+      <button 
+        onClick={() => router.push('/')}
+        className="absolute top-8 left-8 flex items-center gap-2 text-[#4C4C4C] hover:text-white transition-all group z-20"
+      >
+        <div className="w-10 h-10 rounded-full border border-white/5 bg-white/5 flex items-center justify-center group-hover:bg-[#E50914] group-hover:border-[#E50914] transition-all">
+          <ChevronLeft size={20} />
+        </div>
+        <span className="text-sm font-medium">Назад</span>
+      </button>
+
       <div className="absolute bottom-[-10%] left-1/2 -translate-x-1/2 w-[1000px] h-[400px] bg-[#E50914]/15 blur-[120px] rounded-full z-0" />
 
       <div className="w-full max-w-[420px] relative z-10">

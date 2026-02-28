@@ -31,12 +31,12 @@ export const Sidebar = ({ onLogoutClick }: SidebarProps) => {
   const [isLogoutOpen, setIsLogoutOpen] = useState(false);
 
   const handleLogoutConfirm = () => {
-    router.push('/login');
+    router.push('/');
   };
 
   return (
     <div className="flex flex-col h-full w-full">
-      <nav className="flex-1 flex flex-col gap-6">
+      <nav className="flex-1 flex flex-col gap-2">
         {menu.map((g) => (
           <div key={g.group} className="flex flex-col gap-3">
             <p className="text-[11px] text-[#4C4C4C] font-bold uppercase tracking-widest px-2">
@@ -73,7 +73,8 @@ export const Sidebar = ({ onLogoutClick }: SidebarProps) => {
         onClick={onLogoutClick} 
         className="flex items-center gap-3 px-3 py-2.5 text-[#4C4C4C] hover:text-red-500 transition-colors"
       >
-        <span>Выйти</span>
+        <span><Image src="/icon/logout.png" alt="Выйти" width={20} height={20} /></span>
+        <span className="text-[15px] font-medium tracking-tight">Выйти</span>
       </button>
       </nav>
       <LogoutModal 

@@ -13,14 +13,14 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const router = useRouter();
 
   const handleLogoutConfirm = () => {
-    router.push('/login');
+    router.push('/');
   };
 
   return (
-    <div className="min-h-screen bg-[#080808] text-white font-sans flex flex-col overflow-hidden">
+    <div className="min-h-[100vh] bg-[#080808] text-white  flex flex-col overflow-hidden">
       
       <header className="sticky top-0 z-[110] bg-[#080808]">
-        <div className="max-w-7xl mx-auto flex items-center justify-between p-4 lg:px-8">
+        <div className="max-w-7xl mx-auto  flex items-center justify-between p-4 lg:px-8">
           <div className="flex items-center gap-4">
             <button 
               onClick={() => setIsMobileMenuOpen(true)} 
@@ -50,7 +50,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         <aside className={`
           fixed inset-y-0 left-0 z-[200] w-[300px] bg-[#080808] border-r border-[#1E1E1E]
           transform transition-transform duration-300 ease-in-out
-          lg:relative lg:translate-x-0 lg:flex lg:flex-col lg:gap-4 lg:p-6 lg:h-[calc(100vh-73px)] lg:sticky lg:top-[73px]
+          lg:relative lg:translate-x-0 lg:flex lg:flex-col lg:gap-4 lg:p-6 lg:h-[calc(100vh)] lg:sticky lg:top-[73px]
           ${isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"}
         `}>
           <div className="lg:hidden flex justify-between items-center p-6 border-b border-white/5 mb-4">
@@ -62,7 +62,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             <div className="bg-[#121212] border border-[#1E1E1E] rounded-[24px] p-4 ">
               <BalanceCard />
             </div>
-            <div className="bg-[#121212] border border-[#1E1E1E] rounded-[24px] p-4 flex-1 flex flex-col">
+            <div className="bg-[#121212] border border-[#1E1E1E]  rounded-[24px] p-4 flex-1 flex flex-col">
               <Sidebar onLogoutClick={() => setIsLogoutOpen(true)} />
             </div>
           </div>
